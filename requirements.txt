@@ -1,9 +1,11 @@
 numpy
 pandas
-seaborn
 matplotlib
+seaborn
 ipykernel
 scikit-learn
+joblib
+pickle5
 catboost
 xgboost
 streamlit
