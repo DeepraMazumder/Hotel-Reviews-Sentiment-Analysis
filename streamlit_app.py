@@ -635,9 +635,9 @@ elif page == "Analyze":
             </style>
         """, unsafe_allow_html=True)
 
-        st.markdown("<h4 class='centered-title'>Enter some reviews to predict it's sentiments</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 class='centered-title'>Enter a  review to predict its sentiment</h4>", unsafe_allow_html=True)
         # Create a text area with custom styling
-        user_reviews = st.text_area("", placeholder="e.g.: Absolutely loved our stay! The staff was incredibly friendly and helpful, and the breakfast was amazing. Will definitely be returning.", height=50, key="custom_textarea")
+        user_reviews = st.text_area("", placeholder="e.g: Absolutely loved our stay! The staff was incredibly friendly and helpful, and the breakfast was amazing. Will definitely be returning.", height=50, key="custom_textarea")
 
         # Create a button to fetch the content
         if st.button("Predict"):
