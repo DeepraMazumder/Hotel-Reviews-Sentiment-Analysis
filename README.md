@@ -1,29 +1,28 @@
-# 🏨 NPN Cognizant Hackathon - Hotel Sentiment Analysis 🏆
+# NPN Cognizant Hackathon - Hotel Sentiment Analysis
 
-Welcome to our **Hotel Sentiment Analysis** project for the **NPN Cognizant Hackathon**! This repository contains all the necessary components to scrape, analyze, and predict sentiment from hotel reviews.
+Welcome to our **Hotel Sentiment Analysis** project for the **NPN Cognizant Hackathon**! This repository contains all the necessary components to scrape, analyze, predict and summarise sentiments from hotel reviews.
 
 ## 🚀 Project Overview
 
-Our project focuses on **predicting sentiment** from hotel reviews using a combination of advanced Natural Language Processing (NLP) techniques and machine learning models. We aim to provide a robust solution that can assist hotels in understanding guest satisfaction through automated sentiment analysis.
+Our project focuses on predicting **positive & negative sentiments** from hotel reviews using a combination of advanced Natural Language Processing (NLP) techniques and classical Machine Learning models. We aim to provide a robust solution that can assist hotels in understanding guest satisfaction through automated sentiment analysis.
 
 ## 📂 Project Structure
 
-- **NPN-Cognizant-Hackathon**:  
-  - `NPN_Label_Encoder.pkl`: Pre-trained label encoder for categorical variables.
-  - `NPN_LightGBM_Model.pkl`: LightGBM model trained for sentiment analysis.
+- **Artifacts**:  
   - `NPN_Logistic_Regression_Model.pkl`: Logistic Regression model for comparison.
-  - `NPN_Naive_Bayes_Model.pkl`: Naive Bayes model used for baseline performance.
   - `NPN_Random_Forest_Model.pkl`: Random Forest model for advanced predictions.
-  - `NPN_TF_IDF_Vectorizer.pkl`: TF-IDF vectorizer to transform text data.
+  - `NPN_Naive_Bayes_Model.pkl`: Naive Bayes model used for baseline performance.
   - `NPN_XGBoost_Model.pkl`: XGBoost model for high-performance predictions.
+  - `NPN_LightGBM_Model.pkl`: LightGBM model trained for sentiment analysis.
+  - `NPN_Label_Encoder.pkl`: Pre-trained label encoder for categorical variables.
+  - `NPN_TF_IDF_Vectorizer.pkl`: TF-IDF vectorizer to transform text data.
 
 - **Dataset**:  
   - `Scraped_Dataset.csv`: The dataset scraped from various hotel review sites.
   - `Single_Hotel_Dataset.csv`: Dataset focusing on a single hotel's reviews.
 
 - **notebooks**:  
-  - `catboost_info/`: Notes and outputs related to CatBoost experimentation.
-  - `Hotel_Sentiment_Analysis.ipynb`: The Jupyter notebook detailing the entire workflow from data scraping to model training and evaluation.
+  - `Hotel_Sentiment_Analysis.ipynb`: The Jupyter notebook detailing the model training and evaluation.
 
 - **src**:  
   - `__init__.py`: Initialization for the source module.
@@ -40,7 +39,6 @@ Our project focuses on **predicting sentiment** from hotel reviews using a combi
   - `test.py`: Testing scripts to validate the scraper's performance.
 
 - `.gitignore`: Files and folders to be ignored by Git.
-- `README.md`: You’re reading it! 🎉
 - `requirements.txt`: Python packages required to run the project.
 - `setup.py`: Setup script for easy installation of the project.
 
@@ -60,7 +58,7 @@ pip install -r requirements.txt
 
 1. **Scrape Data**: Use the web scraper to collect hotel reviews.
    ```bash
-   python Web_Scraping/scraper.py
+   python Web_Scraping/test.py
    ```
 
 2. **Run Analysis**: Execute the Jupyter notebook to train models and analyze sentiments.
@@ -81,8 +79,8 @@ pip install -r requirements.txt
 ## 🧠 Model Overview
 
 - **Logistic Regression**: Baseline model for comparison.
-- **Naive Bayes**: Quick and interpretable model.
 - **Random Forest**: Ensemble method to capture complex patterns.
+- **Naive Bayes**: Quick and interpretable model.
 - **LightGBM & XGBoost**: Gradient boosting models for high accuracy.
 
 ## 📈 Results
