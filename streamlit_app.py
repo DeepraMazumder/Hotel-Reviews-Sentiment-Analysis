@@ -305,7 +305,7 @@ elif page == "Analyze":
 
     with col2:
         # File Uploader
-        st.markdown("<h4 class='centered-title'>Upload your hotel reviews csv file here</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 class='centered-title'>Upload your hotel reviews .csv file here</h4>", unsafe_allow_html=True)
         uploaded_file = st.file_uploader("", type=["csv"])
         
         analyze_btn2 = st.button("Predict Insights")
