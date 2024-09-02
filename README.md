@@ -31,7 +31,6 @@ Our project focuses on predicting **positive & negative sentiments** from hotel 
   - `utils.py`: Utility functions used throughout the project.
 
 - **templates**:  
-  - `.streamlit/`: Streamlit configuration files for deploying the web app.
   - `img/`: Images and media files used in the project.
 
 - **Web_Scraping**:  
@@ -40,6 +39,8 @@ Our project focuses on predicting **positive & negative sentiments** from hotel 
 
 - `.gitignore`: Files and folders to be ignored by Git.
 - `requirements.txt`: Python packages required to run the project.
+- `.streamlit/`: Streamlit configuration files for deploying the web app.
+- `streamlit_app.py`: The main Streamlit application file that launches the web interface for the project, allowing users to interact with the sentiment analysis model and visualize the results.
 - `setup.py`: Setup script for easy installation of the project.
 
 ## 🛠️ Getting Started
@@ -66,14 +67,9 @@ pip install -r requirements.txt
    jupyter notebook notebooks/Hotel_Sentiment_Analysis.ipynb
    ```
 
-3. **Make Predictions**: Use the `prediction.py` script to predict sentiments from new data.
+3. **Deploy the App**: Deploy the Streamlit web app to showcase your results.
    ```bash
-   python src/prediction.py
-   ```
-
-4. **Deploy the App**: Deploy the Streamlit web app to showcase your results.
-   ```bash
-   streamlit run templates/streamlit/app.py
+   streamlit run streamlit_app.py
    ```
 
 ## 🧠 Model Overview
