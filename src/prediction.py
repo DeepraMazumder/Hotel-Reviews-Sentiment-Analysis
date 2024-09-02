@@ -28,11 +28,8 @@ class PredictPipeline:
 
         return prediction_df
     
-    # def predict_str(self, review):
-    #     # Transform the single review string using the loaded TF-IDF vectorizer
-    #     X_tfv = self.vectorizer.transform([review])
-
-    #     # Predict the sentiment using the loaded Logistic Regression model
-    #     prediction = self.model.predict(X_tfv)
-
-    #     return prediction[0]
+    def predict_str(self, review):
+        # Transform the single review string using the loaded TF-IDF vectorizer
+        processed_data = self.vectorizer.transform([review])
+        prediction = self.model.predict(processed_data)
+        return prediction[0]

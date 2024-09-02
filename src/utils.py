@@ -17,7 +17,6 @@ def load_object(file_path):
 def plot_pie_chart(predictions):
     distribution = predictions.value_counts()
     
-    # Create a Plotly pie chart with improved aesthetics
     fig = px.pie(
         names=distribution.index,
         values=distribution.values,
@@ -27,28 +26,27 @@ def plot_pie_chart(predictions):
     
     # Adjust the layout for a better appearance and title visibility
     fig.update_layout(
-        title_font_size=35,   # Title font size
-        title_x=0.52,          # Center the title
-        title_y=0.95,          # Set title at the top of the plot
-        margin=dict(l=600, r=80, t=80, b=80),  # Increase top margin to prevent title cutoff
-        height=500,           # Slightly increase height to accommodate the title
-        width=1300,            # Maintain width
-        showlegend=True       # Show the legend
+        title_font_size=35, 
+        title_x=0.52,         
+        title_y=0.95,        
+        margin=dict(l=600, r=80, t=80, b=80),  
+        height=500,           
+        width=1300,           
+        showlegend=True       
     )
 
     # Update the font size and style for labels and percentages
     fig.update_traces(
-        textposition='inside',   # Position text inside the pie slices
-        textinfo='percent+label', # Show both label and percentage
-        textfont_size=16,        # Increase font size
-        marker=dict(line=dict(color='#000000', width=2))  # Add a black border around slices
+        textposition='inside',   
+        textinfo='percent+label', 
+        textfont_size=16,     
+        marker=dict(line=dict(color='#000000', width=2))  
     )
     
     st.plotly_chart(fig)
 
 
 def plot_wordcloud(dataset):
-    # Combine all reviews
     reviews = " ".join([review for review in dataset['REVIEWS']])
                         
     # Initialize wordcloud object
@@ -72,14 +70,14 @@ def plot_wordcloud(dataset):
     # Update layout for better appearance and title visibility
     fig.update_layout(
         title_text='Wordcloud for All Reviews',
-        title_x=0.55,           # Center the title horizontally
-        title_y=0.9,          # Adjust the vertical position of the title
-        title_font_size=40,    # Increase the font size for better visibility
-        margin=dict(l=600, r=0, t=0, b=0),  # Increase top margin to prevent title overlap
+        title_x=0.55,          
+        title_y=0.9,          
+        title_font_size=40,    
+        margin=dict(l=600, r=0, t=0, b=0), 
         xaxis=dict(visible=False),
         yaxis=dict(visible=False),
-        width=1200,             # Adjust the width of the figure
-        height=500             # Adjust the height of the figure
+        width=1200,             
+        height=500             
     )
 
     # Render the Plotly figure in Streamlit
