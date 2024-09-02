@@ -18,12 +18,9 @@ def load_object(file_path):
 def plot_pie_chart(predictions):
     try:
         logging.info("Plotting pie chart for sentiment distribution")
-
         distribution = predictions.value_counts()
-
         colors = ['#4CAF50', '#F44336']  # Green and red color palette
         explode = (0.05, 0)
-
         plt.figure(figsize=(7, 7))
         plt.pie(distribution,
                 labels=distribution.index,
@@ -33,13 +30,12 @@ def plot_pie_chart(predictions):
                 explode=explode,
                 shadow=True,
                 wedgeprops={'edgecolor': 'black'})
-
+        
         plt.title("Review Sentiment Distribution", fontsize=16, fontweight='bold', color='#333')
-
         plt.tight_layout()
-
         plt.show()
         logging.info("Pie chart plotted successfully")
+
     except Exception as e:
         logging.error(f"Error in utils.py: {str(e)}")
         CustomException(e, sys)
