@@ -32,4 +32,5 @@ class PredictPipeline:
         # Transform the single review string using the loaded TF-IDF vectorizer
         processed_data = self.vectorizer.transform([review])
         prediction = self.model.predict(processed_data)
+        prediction = self.encoder.inverse_transform(prediction)
         return prediction[0]
