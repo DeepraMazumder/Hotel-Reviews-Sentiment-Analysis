@@ -1,5 +1,13 @@
 import streamlit as st
 from streamlit_navigation_bar import st_navbar
+from streamlit_modal import Modal
+import streamlit.components.v1 as components
+from streamlit_extras.switch_page_button import switch_page
+from streamlit_float import *
+
+# from streamlit_card import card
+# import streamlit_shadcn_ui as ui
+# from typing import Iterable, Union, Callable
 
 import pandas as pd
 
@@ -10,9 +18,9 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-pages = ["Home", "Predict", "Upload", "About Team", "GitHub"]
-urls = {"GitHub": "https://github.com/"} #Our 'Official Repository' will be placed here...
-logo_path = ("templates/img/innsights-logo.svg")
+pages = ["Home", "Services", "Analyze", "About Us", "GitHub"]
+urls = {"GitHub": "https://github.com/DeepraMazumder/NPN-Cognizant-Hackathon"}
+logo_path = ("img/innsights-logo.svg")
 
 # Navbar CSS
 styles = {
@@ -227,21 +235,223 @@ if page == "Home":
 ############################################## END - HOME PAGE ##############################################
 
 
+
+######################################### START - SERVICES PAGE #########################################
+
+elif page == "Services":
+    st.markdown("""
+        <style>
+        .center-container {
+            text-align: center;
+        }
+     
+        .centered-title {
+            font-size: 30px;
+            text-align: center;
+            margin-top: 0px;
+            margin-bottom: -40px;
+        }
+                
+        div.st-ak.st-al.st-bd.st-be.st-bf.st-as.st-bg.st-bh.st-ar.st-bi.st-bj.st-bk.st-bl {
+            height: 40px;
+        }
+
+        .stButton {
+            margin-top: 0px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .stButton > button {
+            margin: 0 auto;
+            width: 265px;
+            background-color: #faa307;
+            border-color: #d7ae19;
+            color: #ffffff;
+            border-radius: 50px;
+            padding: 0.5rem 0.5rem;
+            font-size: 2.2rem; 
+            font-weight: 700; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            text-align: center;
+            text-decoration: none; 
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;  
+        }
+
+        .stButton > button:hover {
+            background-color: #f48c06;
+            border-color: #f48c06;
+            color: #ffffff; /* Ensure text color is visible */
+            text-decoration: none;
+            transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
+            transform: scale(1.02);
+        }
+
+        .stButton p {
+            font-size: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #ffffff;
+        }
+                
+        
+        
+        </style>
+        """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns([1, 3, 1], vertical_alignment="top")
+    with col1:
+       pass
+
+    with col2:
+        # File Uploader
+        st.markdown("<h4 class='centered-title'>Upload your hotel reviews csv file here</h4>", unsafe_allow_html=True)
+        uploaded_file = st.file_uploader("", type=["csv"])
+        
+        analyze_btn2 = st.button("Predict Insights")
+        # CSV File
+        if analyze_btn2:
+            if uploaded_file is not None:
+                df = pd.read_csv(uploaded_file)
+                st.success("File fetched successfully!")
+                st.dataframe(df)
+            else:
+                st.warning("Please upload a .CSV file!")
+
+    with col3:
+        st.markdown("""
+        <style>
+            .popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: white;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                z-index: 9999;
+            }
+            .popup-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 9998;
+            }
+
+            div.st-emotion-cache-12h5x7g.se1nzilvr5{
+                background-color: #ffffff;
+            }
+                    
+            div.st-emotion-cache-l6wp7i.e1f1d6gn2{
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                max-height: 80vh; /* Limit the height to make it scrollable */
+                overflow-y: auto; /* Enable vertical scrolling */
+                padding: 20px;
+                background-color: white;
+                z-index: 99999; /* Ensure it is above other elements */
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for better visibility */
+                border-radius: 8px; /* Optional: Rounded corners */
+            }
+            div.st-emotion-cache-j5r0tf.e1f1d6gn3{
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                padding: 10px;
+                z-index: 9999;
+                border-radius: 8px;
+            }
+        </style>
+        """, unsafe_allow_html=True)
+
+
+        modal = Modal("Summarize Reviews", key="unique_modal_key")
+
+        # Button to open the modal
+        summarize_btn = st.button('Summarize')
+        if summarize_btn:
+            modal.open()
+
+        # Display the modal content
+        if modal.is_open():
+            with modal.container():
+                # CSS for modal styling with increased width
+                st.markdown("""
+                    <style>
+                        /* Modal Heading Styling */
+                        div.st-emotion-cache-pgf13w.e1nzilvr3 h2 {
+                            font-size: 30px;
+                            margin-top: 0px;
+                            margin-bottom: 0px;
+                        }
+
+                        /* Modal Container Styling */
+                        .modal-container {
+                            max-height: 80vh;
+                            max-width: 80vw; /* Increase width to 80% of viewport */
+                            margin: auto; /* Center the modal */
+                            overflow-y: auto; /* Enable scrolling if content exceeds 80% height */
+                        }
+
+                        /* Centered Title within Modal */
+                        .modal-centered-title {
+                            font-size: 20px;
+                            text-align: center;
+                            margin-top: -30px;
+                            margin-bottom: 0px;
+                        }
+
+                            
+                        div.st-emotion-cache-0.e1f1d6gn0{
+                            width: 100vw;
+                            max-width: 80vw;
+                            margin: auto;
+                        }
+                        
+                        hr {
+                            display: none;
+                        }
+                    </style>
+                """, unsafe_allow_html=True)
+
+                # Placeholder function for generating summary
+                def generate_summary(text):
+                    return "This is a placeholder summary"
+
+                # Modal Content: Select features for sentiment evaluation
+                st.markdown("<h5 class='modal-centered-title'>Select some features for sentiment evaluation</h5>", unsafe_allow_html=True)
+                
+                # Options for sentiment evaluation
+                choices = ["Room Quality", "Hospitality", "Food & Beverages", "Value for money"]
+                selected_aspects = st.multiselect("", options=choices, key="unique_multiselect_key")
+
+                # Button to generate the summary
+                if st.button("Generate Summary", key="unique_summary_button_key"):
+                    # Example text input for summarization
+                    text_input = "Sample text for summarization."
+                    
+                    # Generate the summary
+                    summary = generate_summary(text_input)
+
+                    # Display the generated summary within an expander
+                    with st.expander("Summary", expanded=True):
+                        st.markdown(summary)
+
+
+######################################## END - SERVICES PAGE #########################################
+
+
+
 ######################################### START - PREDICT PAGE #########################################
-elif page == "Predict":
-
-    #Dot-Matrix BG
-    # st.markdown("""
-    # <style>
-    # .stApp {
-    #     background-image: radial-gradient(circle, rgba(0,0,0,0.1) 10%, transparent 10%), radial-gradient(circle, rgba(0,0,0,0.1) 10%, transparent 10%);
-    #     background-size: 20px 20px;
-    #     background-color: #f0f0f0;
-    # }
-    # </style>
-    # """, unsafe_allow_html=True)
-
-    
+elif page == "Analyze":
     col1 = st.container()
     with col1:
         st.markdown("""
@@ -249,12 +459,12 @@ elif page == "Predict":
         .full-width {
             width: 100%;
             text-align: center;
-            font-size: 85px;
+            font-size: 75px;
             font-family: 'Poppins', sans-serif;
             font-weight: 1000;
             color: #212529;
-            margin-top: 40px;
-            line-height: 1.2;
+            margin-top: 0px;
+            line-height: 1.1;
             background: rgb(116,3,1);
             background: -moz-linear-gradient(90deg, rgba(116,3,1,1) 2%, rgba(191,6,3,1) 37%, rgba(244,140,6,1) 65%, rgba(232,93,4,1) 97%);
             background: -webkit-linear-gradient(90deg, rgba(116,3,1,1) 2%, rgba(191,6,3,1) 37%, rgba(244,140,6,1) 65%, rgba(232,93,4,1) 97%);
@@ -270,7 +480,7 @@ elif page == "Predict":
         """, unsafe_allow_html=True)
 
         st.markdown(
-            '<div class="full-width">A faster way to analyze<br><span class="line2">your hotel reviews</span></div>',
+            '<div class="full-width">A faster way to analyze<br><span class="line2">your hotel review</span></div>',
             unsafe_allow_html=True
         )
 
@@ -279,11 +489,11 @@ elif page == "Predict":
         .sub-heading {
             width: 100%;
             text-align: center;
-            font-size: 22px;
+            font-size: 20px;
             font-family: 'Poppins', sans-serif;
-            font-weight: 400;
+            font-weight: 200;
             color: #555555;
-            margin-top: 10px;
+            margin-top: -15px;
         }
         </style>
         """, unsafe_allow_html=True)
@@ -325,7 +535,7 @@ elif page == "Predict":
             display: block;
             height: 90%;
             width: 105%;
-            margin-left: -3px;
+            margin-left: -1px;
             margin-right: -3px;
             position: absolute;
             background: #ffd500;
@@ -344,11 +554,10 @@ elif page == "Predict":
         # Sub-heading with the highlighted "innsights.ai"
         st.markdown(
             '''
-            <div class="sub-heading">
+            <div class="sub-heading">Analyze Sentiments in Hotel Reviews for Better Service with 
                 <span class="highlight-container">
-                    <span class="highlight">innsights.ai</span>
-                </span> 
-                delivers sentiment-driven insights from hotel reviews,<br> helping the hoteliers to enhance their facilities.
+                    <span class="highlight"> innsights.ai</span>
+                </span>
             </div>
             ''',
             unsafe_allow_html=True
@@ -357,206 +566,92 @@ elif page == "Predict":
 
     # Multiselector      
     col1, col2, col3 = st.columns([1, 3, 1], vertical_alignment="top")
-    # Column 1 (content hidden)
     with col1:
         pass
 
-    # Column 2 (content visible and centered)
     with col2:
-        
         st.markdown("""
-        <style>
-            .centered-title {
-                font-size: 30px;
-                text-align: center;
-                margin-top: 50px;
-                margin-bottom: -50px;
-            }
-                  
-            div.st-ak.st-al.st-bd.st-be.st-bf.st-as.st-bg.st-bh.st-ar.st-bi.st-bj.st-bk.st-bl {
-                height: 50px;
-            }
+            <style>
+                .centered-title {
+                    font-size: 25px;
+                    text-align: center;
+                    margin-top: 20px;
+                    margin-bottom: -50px;
+                }
+                    
+                .custom-textarea {
+                    text-align: center;
+                    margin-top: 50px;
+                    margin-bottom: -50px;
+                    width: 90%;
+                    height: 50px;
+                    max-height: 100px;
+                    border-radius: 25px;
+                    border: 1px solid #d7ae19;
+                    padding: 10px;
+                }
 
-        </style>
+                .stButton {
+                    margin-top: 0px;
+                    margin-bottom: 20px;
+                    display: flex;
+                    justify-content: center;
+                }
+                
+                .stButton > button {
+                    margin: 0 auto;
+                    width: 250px;
+                    background-color: #faa307;
+                    border-color: #d7ae19;
+                    color: #ffffff;
+                    border-radius: 50px;
+                    padding: 0.5rem 0.5rem;
+                    font-size: 2rem; 
+                    font-weight: 500; 
+                    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+                    text-align: center;
+                    text-decoration: none; 
+                    display: inline-block;
+                    font-family: 'Oswald', sans-serif;  
+                }
+
+                .stButton > button:hover {
+                    background-color: #f48c06;
+                    border-color: #f48c06;
+                    color: #ffffff; /* Ensure text color is visible */
+                    text-decoration: none;
+                    transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
+                    transform: scale(1.02);
+                }
+
+                .stButton p {
+                    font-size: 1.2rem;
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 600;
+                    color: #ffffff;
+                }
+            </style>
         """, unsafe_allow_html=True)
 
-        st.markdown("<h4 class='centered-title'>Select some features for sentiment evaluation</h4>", unsafe_allow_html=True)
-        choices = ["Room Quality", "Hospitality", "Food & Beverages", "Value for money"]
-        selected_aspects = st.multiselect("", options=choices, key="multiselect", label_visibility="collapsed")
+        st.markdown("<h4 class='centered-title'>Enter some reviews to predict it's sentiments</h4>", unsafe_allow_html=True)
+        # Create a text area with custom styling
+        user_reviews = st.text_area("", placeholder="e.g.: Absolutely loved our stay! The staff was incredibly friendly and helpful, and the breakfast was amazing. Will definitely be returning.", height=50, key="custom_textarea")
 
-
-        # Analyze button
-        st.markdown("""
-        <style>
-        .center-container {
-            text-align: center;
-        }
-
-        .stButton {
-            margin-top: 0px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .stButton > button {
-            margin: 0 auto;
-            width: 265px;
-            background-color: #faa307;
-            border-color: #d7ae19;
-            color: #ffffff;
-            border-radius: 50px;
-            padding: 0.5rem 0.5rem;
-            font-size: 2.2rem; 
-            font-weight: 700; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            text-align: center;
-            text-decoration: none; 
-            display: inline-block;
-            font-family: 'Oswald', sans-serif;  
-        }
-
-        .stButton > button:hover {
-            background-color: #f48c06;
-            border-color: #f48c06;
-            color: #ffffff; /* Ensure text color is visible */
-            text-decoration: none;
-            transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
-            transform: scale(1.02);
-        }
-
-        .stButton p {
-            font-size: 1.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: #ffffff;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-
-        analyze_btn = st.button("Analyze")
-        
-        if analyze_btn:
-            if selected_aspects:
-                st.success(f"Analyzing the following aspects: {', '.join(selected_aspects)}...")
+        # Create a button to fetch the content
+        if st.button("Analyze"):
+            if not user_reviews.strip():
+                st.warning("Please enter a review before analyzing.")
             else:
-                st.warning("Sorry, no aspects selected!")
+                st.write("Review: ", user_reviews)
 
-
-    # Column 3 (content hidden)
     with col3:
         pass
-
 
 ######################################### END - PREDICT PAGE #########################################
 
 
 
-######################################### START - UPLOAD PAGE #########################################
-elif page == "Upload":
-
-    col1, col2, col3 = st.columns([1, 3, 1], vertical_alignment="top")
-
-    with col1:
-        pass
-
-    with col2:
-        # CSS 
-        st.markdown("""
-        <style>
-            .centered-title {
-                font-size: 30px;
-                text-align: center;
-                margin-top: 50px;
-                margin-bottom: -50px;
-            }
-                  
-            div.st-ak.st-al.st-bd.st-be.st-bf.st-as.st-bg.st-bh.st-ar.st-bi.st-bj.st-bk.st-bl {
-                height: 50px;
-            }
-
-        </style>
-        """, unsafe_allow_html=True)
-
-        # Analyze button
-        st.markdown("""
-        <style>
-        .center-container {
-            text-align: center;
-        }
-
-        .stButton {
-            margin-top: 0px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .stButton > button {
-            margin: 0 auto;
-            width: 265px;
-            background-color: #faa307;
-            border-color: #d7ae19;
-            color: #ffffff;
-            border-radius: 50px;
-            padding: 0.5rem 0.5rem;
-            font-size: 2.2rem; 
-            font-weight: 700; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            text-align: center;
-            text-decoration: none; 
-            display: inline-block;
-            font-family: 'Oswald', sans-serif;  
-        }
-
-        .stButton > button:hover {
-            background-color: #f48c06;
-            border-color: #f48c06;
-            color: #ffffff; /* Ensure text color is visible */
-            text-decoration: none;
-            transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
-            transform: scale(1.02);
-        }
-
-        .stButton p {
-            font-size: 1.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: #ffffff;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-
-        # File Uploader
-        st.markdown("<h4 class='centered-title'>Upload your hotel reviews csv file here</h4>", unsafe_allow_html=True)
-        uploaded_file = st.file_uploader("", type=["csv"])
-
-        
-        analyze_btn2 = st.button("Analyze")
-        # CSV File
-        if analyze_btn2:
-            if uploaded_file is not None:
-                df = pd.read_csv(uploaded_file)
-                st.success("File fetched successfully!")
-                st.dataframe(df)
-            else:
-                st.warning("Please upload a .CSV file!")
-
-    with col3:
-        pass
-
-    
-    
-
-
-######################################## END - UPLOAD PAGE #########################################
-
-
-
 ######################################## START - ABOUT PAGE ########################################
-elif page == "About Team":
-    st.header("About Team")
+elif page == "About Us":
+    st.header("About Us")
 ######################################## END - ABOUT PAGE #########################################
-
-# with st.sidebar:
-#     st.header("Sidebar")
