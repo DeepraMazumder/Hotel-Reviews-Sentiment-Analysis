@@ -20,8 +20,14 @@ class PredictPipeline:
         # Decode the predictions using
         predictions = self.encoder.inverse_transform(predictions)
 
-        return pd.Series(predictions)
+        # Create a DataFrame with the original reviews and the predicted sentiments
+        prediction_df = pd.DataFrame({
+            'Reviews': dataset['REVIEWS'],
+            'Sentiment': predictions
+        })
 
+        return prediction_df
+    
     # def predict_str(self, review):
     #     # Transform the single review string using the loaded TF-IDF vectorizer
     #     X_tfv = self.vectorizer.transform([review])

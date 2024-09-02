@@ -319,7 +319,7 @@ elif page == "Analyze":
                 pred = pipeline.predict_csv(df)
                 st.write(pred)
 
-                plot_pie_chart(pred)
+                plot_pie_chart(pred["Sentiment"])
             else:
                 st.warning("Please upload a .CSV file!")
 
