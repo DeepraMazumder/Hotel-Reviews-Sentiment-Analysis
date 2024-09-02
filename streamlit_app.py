@@ -1,9 +1,5 @@
 import streamlit as st
 from streamlit_navigation_bar import st_navbar
-from streamlit_card import card
-import streamlit_shadcn_ui as ui
-from streamlit_pills import pills
-from typing import Iterable, Union, Callable
 
 import pandas as pd
 
@@ -16,7 +12,7 @@ st.set_page_config(
 
 pages = ["Home", "Predict", "Upload", "About Team", "GitHub"]
 urls = {"GitHub": "https://github.com/"} #Our 'Official Repository' will be placed here...
-logo_path = ("img/innsights-logo.svg")
+logo_path = ("templates/img/innsights-logo.svg")
 
 # Navbar CSS
 styles = {
@@ -386,7 +382,7 @@ elif page == "Predict":
 
         st.markdown("<h4 class='centered-title'>Select some features for sentiment evaluation</h4>", unsafe_allow_html=True)
         choices = ["Room Quality", "Hospitality", "Food & Beverages", "Value for money"]
-        selected_aspects = st.multiselect("", options=choices, key="multiselect")
+        selected_aspects = st.multiselect("", options=choices, key="multiselect", label_visibility="collapsed")
 
 
         # Analyze button
