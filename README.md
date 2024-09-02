@@ -89,9 +89,6 @@ Our models have been fine-tuned and evaluated to achieve high accuracy in predic
 - [Devarshi Gupta](https://github.com/DevG06)
 - [Mainak Das](https://github.com/Mainak-Das)
 - [Aditya Datta](https://github.com/Aditya007Datta)
-- [Debdipta Mitra](https://github.com/debdipta20)
-- [Kinjal Kanjilal](https://github.com/kinjal12365)
-- [Soumya Chowdhury](https://github.com/teammate7)
 
 ## 📝 License
 
