@@ -9,6 +9,7 @@ import pandas as pd
 from src.prediction import PredictPipeline
 from src.utils import plot_pie_chart
 
+
 st.set_page_config(
     page_title="innsights.ai",
     page_icon="chart_with_upwards_trend",
