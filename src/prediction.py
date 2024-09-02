@@ -10,4 +10,3 @@ class PredictPipeline:
 
     def predict_str(self, review):
         pass
-    
