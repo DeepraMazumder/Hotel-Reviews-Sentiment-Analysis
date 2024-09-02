@@ -6,6 +6,8 @@ from streamlit_modal import Modal
 # from streamlit_float import *
 
 import pandas as pd
+from src.prediction import PredictPipeline
+from src.utils import plot_pie_chart
 
 st.set_page_config(
     page_title="innsights.ai",
@@ -16,7 +18,7 @@ st.set_page_config(
 
 pages = ["Home", "Services", "Analyze", "About Us", "GitHub"]
 urls = {"GitHub": "https://github.com/DeepraMazumder/NPN-Cognizant-Hackathon"}
-logo_path = ("img/innsights-logo.svg")
+logo_path = ("templates\img\innsights-logo.svg")
 
 # Navbar CSS
 styles = {
@@ -311,8 +313,12 @@ elif page == "Services":
         if analyze_btn2:
             if uploaded_file is not None:
                 df = pd.read_csv(uploaded_file)
+                pipeline = PredictPipeline()
                 st.success("File fetched successfully!")
-                st.dataframe(df)
+                pred = pipeline.predict_csv(df)
+                st.write(pred)
+
+                plot_pie_chart(pred)
             else:
                 st.warning("Please upload a .CSV file!")
 

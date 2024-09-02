@@ -1,18 +1,15 @@
 import pandas as pd
-from utils import load_object
+from src.utils import load_object
 
 class PredictPipeline:
     def __init__(self) -> None:
         # Load the TF-IDF Vectorizer and Logistic Regression Model
-        self.vectorizer = load_object('artifacts\NPN_TF_IDF_Vectorizer.pkl')
-        self.model = load_object('artifacts\NPN_Logistic_Regression_Model.pkl')
-        self.encoder = load_object("artifacts\NPN_Label_Encoder.pkl")
+        self.vectorizer = load_object('artifacts/NPN_TF_IDF_Vectorizer.pkl')
+        self.model = load_object('artifacts/NPN_Logistic_Regression_Model.pkl')
+        self.encoder = load_object("artifacts/NPN_Label_Encoder.pkl")
 
     def predict_csv(self, dataset):
-        # Read the CSV file
-        data = pd.read_csv(dataset)
-
-        reviews = data['Review']
+        reviews = dataset['REVIEWS']
 
         # Transform the reviews using the loaded TF-IDF vectorizer
         processed_data = self.vectorizer.transform(reviews)
