@@ -13,7 +13,6 @@ class PredictPipeline:
         pass
 '''
 
-
 class PredictPipeline:
     def __init__(self) -> None:
         # Load the TF-IDF Vectorizer and Logistic Regression Model
