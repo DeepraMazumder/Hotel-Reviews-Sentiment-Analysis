@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-pages = ["Home", "Services", "Analyze", "About Us", "GitHub"]
+pages = ["Home", "Analyze", "Predict", "About Us", "GitHub"]
 urls = {"GitHub": "https://github.com/DeepraMazumder/NPN-Cognizant-Hackathon"}
 logo_path = ("templates\img\innsights-logo.svg")
 
@@ -236,7 +236,7 @@ if page == "Home":
 
 ######################################### START - SERVICES PAGE #########################################
 
-elif page == "Services":
+elif page == "Analyze":
     st.markdown("""
         <style>
         .center-container {
@@ -453,7 +453,7 @@ elif page == "Services":
 
 
 ######################################### START - PREDICT PAGE #########################################
-elif page == "Analyze":
+elif page == "Predict":
     col1 = st.container()
     with col1:
         st.markdown("""
