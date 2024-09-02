@@ -9,4 +9,5 @@ streamlit_navigation_bar
 catboost
 xgboost
 streamlit
+selenium
 -e .
