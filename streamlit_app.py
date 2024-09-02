@@ -640,7 +640,7 @@ elif page == "Analyze":
         user_reviews = st.text_area("", placeholder="e.g.: Absolutely loved our stay! The staff was incredibly friendly and helpful, and the breakfast was amazing. Will definitely be returning.", height=50, key="custom_textarea")
 
         # Create a button to fetch the content
-        if st.button("Analyze"):
+        if st.button("Predict"):
             if not user_reviews.strip():
                 st.warning("Please enter a review before analyzing.")
             else:
