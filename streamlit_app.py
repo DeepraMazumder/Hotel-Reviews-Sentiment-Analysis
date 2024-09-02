@@ -1,13 +1,9 @@
 import streamlit as st
 from streamlit_navigation_bar import st_navbar
 from streamlit_modal import Modal
-import streamlit.components.v1 as components
-from streamlit_extras.switch_page_button import switch_page
-from streamlit_float import *
-
-# from streamlit_card import card
-# import streamlit_shadcn_ui as ui
-# from typing import Iterable, Union, Callable
+# import streamlit.components.v1 as components
+# from streamlit_extras.switch_page_button import switch_page
+# from streamlit_float import *
 
 import pandas as pd
 

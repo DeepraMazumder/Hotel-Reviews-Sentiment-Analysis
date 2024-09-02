@@ -10,3 +10,4 @@ xgboost
 streamlit
 selenium
 lightgbm
+streamlit_modal
