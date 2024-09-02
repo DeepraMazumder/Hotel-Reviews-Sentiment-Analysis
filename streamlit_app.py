@@ -8,7 +8,7 @@ from streamlit_modal import Modal
 import pandas as pd
 from src.prediction import PredictPipeline
 from src.utils import plot_pie_chart, plot_wordcloud
-
+from src.summariser import Summariser
 
 st.set_page_config(
     page_title="innsights.ai",
@@ -399,9 +399,10 @@ elif page == "Analyze":
                         /* Modal Container Styling */
                         .modal-container {
                             max-height: 80vh;
-                            max-width: 80vw; /* Increase width to 80% of viewport */
+                            max-width: 90vw; /* Increase width to 80% of viewport */
                             margin: auto; /* Center the modal */
                             overflow-y: auto; /* Enable scrolling if content exceeds 80% height */
+                            overflow-x: hidden;
                         }
 
                         /* Centered Title within Modal */
@@ -425,28 +426,23 @@ elif page == "Analyze":
                     </style>
                 """, unsafe_allow_html=True)
 
-                # Placeholder function for generating summary
-                def generate_summary(text):
-                    return "This is a placeholder summary"
-
                 # Modal Content: Select features for sentiment evaluation
-                st.markdown("<h5 class='modal-centered-title'>Select some features for sentiment evaluation</h5>", unsafe_allow_html=True)
+                st.markdown("<h5 class='modal-centered-title'>Select some features for sentiment evaluation<br>OR<br>Click on 'Generate Summary' for a overall view</h5>", unsafe_allow_html=True)
                 
                 # Options for sentiment evaluation
-                choices = ["Room Quality", "Hospitality", "Food & Beverages", "Value for money"]
+                choices = ["Parking", "Cleanliness", "Transportation", "Internet", "Restaurant"]
                 selected_aspects = st.multiselect("", options=choices, key="unique_multiselect_key")
 
+
+                df = pd.read_csv(uploaded_file)
                 # Button to generate the summary
                 if st.button("Generate Summary", key="unique_summary_button_key"):
-                    # Example text input for summarization
-                    text_input = "Sample text for summarization."
-                    
-                    # Generate the summary
-                    summary = generate_summary(text_input)
+                    summ = Summariser()
+                    summary_result = summ.summarize_reviews(df, selected_aspects)
 
                     # Display the generated summary within an expander
                     with st.expander("Summary", expanded=True):
-                        st.markdown(summary)
+                        st.markdown(summary_result)
 
 
 ######################################## END - SERVICES PAGE #########################################
@@ -633,19 +629,57 @@ elif page == "Predict":
                     font-weight: 600;
                     color: #ffffff;
                 }
+
+                .green-success {
+                    color: #007200;
+                    font-size: 30px;
+                    font-weight: bold;
+                    background-color: #96e072;
+                    border-left: 10px solid #007200;
+                    padding: 10px;
+                    border-radius: 10px;
+                    text-align: center;
+                }
+                    
+                .red-success {
+                    color: #6a040f;
+                    font-size: 30px;
+                    font-weight: bold;
+                    background-color: #f8d7da;
+                    border-left: 10px solid #6a040f;
+                    padding: 10px;
+                    border-radius: 10px;
+                    text-align: center;
+                }
+                
             </style>
         """, unsafe_allow_html=True)
 
         st.markdown("<h4 class='centered-title'>Enter a  review to predict its sentiment</h4>", unsafe_allow_html=True)
         # Create a text area with custom styling
         user_reviews = st.text_area("", placeholder="e.g: Absolutely loved our stay! The staff was incredibly friendly and helpful, and the breakfast was amazing. Will definitely be returning.", height=50, key="custom_textarea")
-
+    
         # Create a button to fetch the content
         if st.button("Predict"):
             if not user_reviews.strip():
-                st.warning("Please enter a review before analyzing.")
+                st.warning("Please enter a review before analyzing!")
             else:
-                st.write("Review: ", user_reviews)
+                pred = PredictPipeline()
+                sentiment = pred.predict_str(user_reviews)
+
+                if sentiment == "POSITIVE":
+                    st.markdown("""
+                    <div class="green-success">
+                        POSITIVE ✅
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                else:
+                    st.markdown("""
+                    <div class="red-success">
+                        NEGATIVE ❌
+                    </div>
+                    """, unsafe_allow_html=True)
 
     with col3:
         pass
