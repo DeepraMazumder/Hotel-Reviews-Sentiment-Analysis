@@ -7,7 +7,7 @@ from streamlit_modal import Modal
 
 import pandas as pd
 from src.prediction import PredictPipeline
-from src.utils import plot_pie_chart
+from src.utils import plot_pie_chart, plot_wordcloud
 
 
 st.set_page_config(
@@ -318,8 +318,8 @@ elif page == "Analyze":
                 st.success("File fetched successfully!")
                 pred = pipeline.predict_csv(df)
                 st.write(pred)
-
                 plot_pie_chart(pred["Sentiment"])
+                plot_wordcloud(df)
             else:
                 st.warning("Please upload a .CSV file!")
 
