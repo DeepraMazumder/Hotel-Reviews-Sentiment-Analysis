@@ -20,8 +20,6 @@ class Summariser:
         # Initialize the GenerativeModel with the Gemini summarization model
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
-        aspects = []
-
         # Create the prompt based on whether aspects are provided
         if aspects:
             prompt = f"Provide a summary of the hotel reviews, focusing just on the following aspects: {', '.join(aspects)} in short."
