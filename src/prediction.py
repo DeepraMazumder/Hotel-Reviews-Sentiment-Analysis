@@ -4,8 +4,9 @@ from utils import load_object
 class PredictPipeline:
     def __init__(self) -> None:
         # Load the TF-IDF Vectorizer and Logistic Regression Model
-        self.vectorizer = load_object('../artifacts/NPN_TF_IDF_Vectorizer.pkl')
-        self.model = load_object('../artifacts/NPN_Logistic_Regression_Model.pkl')
+        self.vectorizer = load_object('artifacts\NPN_TF_IDF_Vectorizer.pkl')
+        self.model = load_object('artifacts\NPN_Logistic_Regression_Model.pkl')
+        self.encoder = load_object("artifacts\NPN_Label_Encoder.pkl")
 
     def predict_csv(self, dataset):
         # Read the CSV file
@@ -14,21 +15,21 @@ class PredictPipeline:
         reviews = data['Review']
 
         # Transform the reviews using the loaded TF-IDF vectorizer
-        X_tfv = self.vectorizer.transform(reviews)
+        processed_data = self.vectorizer.transform(reviews)
 
         # Predict using the loaded Logistic Regression model
-        predictions = self.model.predict(X_tfv)
+        predictions = self.model.predict(processed_data)
 
-        # Add the predictions as a new column in the DataFrame
-        data['Predicted Sentiment'] = predictions
+        # Decode the predictions using
+        predictions = self.encoder.inverse_transform(predictions)
 
-        return data
+        return pd.Series(predictions)
 
-    def predict_str(self, review):
-        # Transform the single review string using the loaded TF-IDF vectorizer
-        X_tfv = self.vectorizer.transform([review])
+    # def predict_str(self, review):
+    #     # Transform the single review string using the loaded TF-IDF vectorizer
+    #     X_tfv = self.vectorizer.transform([review])
 
-        # Predict the sentiment using the loaded Logistic Regression model
-        prediction = self.model.predict(X_tfv)
+    #     # Predict the sentiment using the loaded Logistic Regression model
+    #     prediction = self.model.predict(X_tfv)
 
-        return prediction[0]
+    #     return prediction[0]
