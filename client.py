@@ -89,7 +89,7 @@ def summarizer_display(df):
 
 
 
-def csv():
+def sentiment_analyzer():
     st.markdown(" # Sentiment Analyzer")
     uploaded_file = st.file_uploader("Choose a  file",type=["csv"],accept_multiple_files=False)
 
