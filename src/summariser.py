@@ -2,7 +2,6 @@ import os
 import re
 
 import google.generativeai as genai
-import pandas as pd
 from dotenv import load_dotenv
 
 report_template = """
@@ -57,7 +56,6 @@ class Summariser:
     
     def summarize_reviews(self, data, aspects=None):
         print(len(data))
-      #   data = data.sample(400)
         #data = data.sample(400)
         # Concatenate all reviews into one string
         all_reviews = " ".join(data['REVIEWS'].tolist())
