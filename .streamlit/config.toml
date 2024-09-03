@@ -1,6 +1,0 @@
-[client]
-showErrorDetails = false
-
-[theme]
-base="light"
-primaryColor="#faa307"
