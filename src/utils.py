@@ -169,7 +169,8 @@ def plot_wordcloud1(dataset,x):
         zeroline=False        
     ),
     width=800,                
-    height=600               
+    height=600
+)          
 
 
 
