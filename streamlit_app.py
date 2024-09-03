@@ -22,7 +22,7 @@ st.set_page_config(
 
 pages = ["Home", "Analyze", "Predict", "About Us", "GitHub Repo"]
 urls = {"GitHub Repo": "https://github.com/DeepraMazumder/NPN-Cognizant-Hackathon"}
-logo_path = r"templates\img\innsights-logo.svg"
+logo_path = r"templates/img/innsights-logo.svg"
 
 # Navbar CSS
 styles = {
