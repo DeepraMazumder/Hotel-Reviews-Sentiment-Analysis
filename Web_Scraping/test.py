@@ -46,7 +46,7 @@ if dataset:
 # Write the collected reviews to a CSV file
 with open('Custom.csv', mode='w', newline='', encoding='utf-8') as file:
     # Create a CSV writer with the dictionary keys as fieldnames
-    writer = csv.DictWriter(file, fieldnames=['review'])
+    writer = csv.DictWriter(file, fieldnames=['REVIEWS'])
     
     # Write the header (column names) to the CSV file
     writer.writeheader()

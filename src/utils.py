@@ -65,7 +65,7 @@ def plot_pie_chart1(predictions):
     fig = px.pie(
         names=distribution.index,
         values=distribution.values,
-        title="Review Sentiment Distribution",
+        title="Sentiment Pie Chart",
         color_discrete_sequence=['#4CAF50', '#F44336']  # Green for positive, red for negative
     )
     
@@ -154,7 +154,7 @@ def plot_wordcloud1(dataset,x):
    
     fig.update_layout(
     title_text=f'Wordcloud for {x} Reviews',
-    title_x=0.1,              
+    title_x=0.0,              
     title_y=0.95,             
     title_font_size=40,       
     margin=dict(l=20, r=20, t=40, b=20), 
