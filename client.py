@@ -68,27 +68,26 @@ def summarizer_display(df):
     
 
     # Initialize summary result in session state 
-    if 'summary_result' not in st.session_state:
-        st.session_state['summary_result'] = None
+    # if 'summary_result' not in st.session_state:
+    #     st.session_state['summary_result'] = None
 
 
     st.markdown("<h4 class='centered-title'>Select the desired parameters for summary generation or click 'Generate Summary' for a comprehensive overview</h4>", unsafe_allow_html=True)
     selected_aspects = st.multiselect(
         "",
-        ["Parking", "Cleanliness", "Transportation", "Internet", "Restaurant"],
-        key="unique_multiselect_key"
+        ["Staff Quality", "Ambience", "Parking", "Transportation", "Internet", "Restaurant"], key="unique_multiselect_key"
     )
 
     if st.button("Generate Summary", key="unique_summary_button_key"):
         with st.spinner("Generating summary..."):
             summ = Summariser()
             summary_result = summ.summarize_reviews(df, selected_aspects)
-            st.session_state['summary_result'] = summary_result  # Save summary result to session state
+            # st.session_state['summary_result'] = summary_result  # Save summary result to session state
             st.write("### Summary")
             st.write_stream(stream_data(summary_result))
 
-    if st.session_state['summary_result']:
-        summary_result = st.session_state['summary_result']
+    # if st.session_state['summary_result']:
+    #     summary_result = st.session_state['summary_result']
 
 
         txt_file = summary_result

@@ -69,7 +69,7 @@ class Summariser:
 
         # Create the prompt based on whether aspects are provided
         if aspects:
-            prompt = f"Provide a detailed summary of the hotel reviews, focusing just on the following aspects: {', '.join(aspects)}"
+            prompt = f"Provide a summary of the hotel reviews, focusing just on the following aspects: {', '.join(aspects)}. Do not add extra aspects, the summary must strictly be based on the provided reviews. Also mention if proper information is not available regarding any {', '.join(aspects)}."
         else:
             prompt = report_template
 
