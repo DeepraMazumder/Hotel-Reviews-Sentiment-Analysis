@@ -53,12 +53,28 @@ def stream_data(txt:str):
 
 
 def summarizer_display(df):
+    #css
+    st.markdown("""
+            <style>
+                .centered-title {
+                    font-size: 25px;
+                    text-align: center;
+                    margin-top: 20px;
+                    margin-bottom: -50px;
+                }
+            
+                </style>
+            """, unsafe_allow_html=True)
+    
+
     # Initialize summary result in session state 
     if 'summary_result' not in st.session_state:
         st.session_state['summary_result'] = None
 
+
+    st.markdown("<h4 class='centered-title'>Select the desired parameters for summary generation or click 'Generate Summary' for a comprehensive overview</h4>", unsafe_allow_html=True)
     selected_aspects = st.multiselect(
-        "Pick your parameters for summary generation",
+        "",
         ["Parking", "Cleanliness", "Transportation", "Internet", "Restaurant"],
         key="unique_multiselect_key"
     )
@@ -90,9 +106,41 @@ def summarizer_display(df):
 
 
 def sentiment_analyzer():
-    st.markdown(" # Sentiment Analyzer")
-    uploaded_file = st.file_uploader("Choose a  file",type=["csv"],accept_multiple_files=False)
+    st.markdown("""
+        <style>
+        .full-width {
+            width: 100%;
+            text-align: center;
+            font-size: 70px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            color: #212529;
+            margin-top: 30px;
+            line-height: 1.1;
+            background: rgb(116,3,1);
+            background: -moz-linear-gradient(90deg, rgba(116,3,1,1) 2%, rgba(191,6,3,1) 37%, rgba(244,140,6,1) 65%, rgba(232,93,4,1) 97%);
+            background: -webkit-linear-gradient(90deg, rgba(116,3,1,1) 2%, rgba(191,6,3,1) 37%, rgba(244,140,6,1) 65%, rgba(232,93,4,1) 97%);
+            background: linear-gradient(90deg, rgba(116,3,1,1) 2%, rgba(191,6,3,1) 37%, rgba(244,140,6,1) 65%, rgba(232,93,4,1) 97%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#740301",endColorstr="#e85d04",GradientType=1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .line2 {
+            margin-top: -10px;
+        }
+        </style>
 
+        <div class="full-width">Accelerate your services<br><span class="line2">one step forward</span></div>
+        """, unsafe_allow_html=True)
+ 
+    st.markdown("""
+    <div style="text-align: center; font-size: 2px; margin-top: 40px; margin-bottom: -50px;">
+        <h1>Sentiment Analyzer</h1>
+    </div>
+    """, unsafe_allow_html=True)
+
+    uploaded_file = st.file_uploader("",type=["csv"],accept_multiple_files=False)
+    
     if uploaded_file is not None:
         # Read the CSV file
         dataframe = pd.read_csv(uploaded_file)

@@ -20,8 +20,8 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-pages = ["Home", "Analyze", "Predict","CSV", "About Us", "GitHub"]
-urls = {"GitHub": "https://github.com/DeepraMazumder/NPN-Cognizant-Hackathon"}
+pages = ["Home", "Analyze", "Predict", "About Us", "GitHub Repo"]
+urls = {"GitHub Repo": "https://github.com/DeepraMazumder/NPN-Cognizant-Hackathon"}
 logo_path = ("templates\img\innsights-logo.svg")
 
 # Navbar CSS
@@ -30,7 +30,7 @@ styles = {
     "nav": {
         "background-color": "rgba(233, 236, 239)",
         "justify-content": "left",
-        "height": "55px",
+        "height": "60px",
     },
     "img": {
         "padding-right": "10px",
@@ -155,7 +155,7 @@ if page == "Home":
     }
                 
     .custom-position {
-        margin-top: 5px;
+        margin-top: -20px;
     }
     </style>
     ''', unsafe_allow_html=True)
@@ -218,8 +218,6 @@ if page == "Home":
     </style>
     ''', unsafe_allow_html=True)
 
-    # st.markdown('<a href="#" class="home-btn" style="color: white;" >Predict Insights</a>', unsafe_allow_html=True)
-
     # Bootstrap CDN
     st.markdown('''
         <style>
@@ -227,225 +225,21 @@ if page == "Home":
         </style>
     ''', unsafe_allow_html=True)
 
-    # Predict Button
-    st.markdown('''
-        <a href="#" class="home-btn" style="color: white; text-decoration: none;">
-            Predict Insights
-            <i class="bi bi-arrow-right-circle-fill" style="padding-left: 2px;"></i>
-        </a>
-    ''', unsafe_allow_html=True)
+    # # Predict Button
+    # st.markdown('''
+    #     <a href="#" class="home-btn" style="color: white; text-decoration: none;">
+    #         Predict Insights
+    #         <i class="bi bi-arrow-right-circle-fill" style="padding-left: 2px;"></i>
+    #     </a>
+    # ''', unsafe_allow_html=True)
 ############################################## END - HOME PAGE ##############################################
 
 
 
 ######################################### START - SERVICES PAGE #########################################
 
-elif page == "CSV":
-    st.markdown("""
-        <style>
-        .center-container {
-            text-align: center;
-        }
-     
-        .centered-title {
-            font-size: 30px;
-            text-align: center;
-            margin-top: 0px;
-            margin-bottom: -40px;
-        }
-                
-        div.st-ak.st-al.st-bd.st-be.st-bf.st-as.st-bg.st-bh.st-ar.st-bi.st-bj.st-bk.st-bl {
-            height: 40px;
-        }
-
-        .stButton {
-            margin-top: 0px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .stButton > button {
-            margin: 0 auto;
-            width: 265px;
-            background-color: #faa307;
-            border-color: #d7ae19;
-            color: #ffffff;
-            border-radius: 50px;
-            padding: 0.5rem 0.5rem;
-            font-size: 2.2rem; 
-            font-weight: 700; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            text-align: center;
-            text-decoration: none; 
-            display: inline-block;
-            font-family: 'Oswald', sans-serif;  
-        }
-
-        .stButton > button:hover {
-            background-color: #f48c06;
-            border-color: #f48c06;
-            color: #ffffff; /* Ensure text color is visible */
-            text-decoration: none;
-            transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
-            transform: scale(1.02);
-        }
-
-        .stButton p {
-            font-size: 1.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: #ffffff;
-        }
-                
-        
-        
-        </style>
-        """, unsafe_allow_html=True)
-
-    col1, col2, col3 = st.columns([1, 3, 1], vertical_alignment="top")
-    with col1:
-       pass
-
-    with col2:
-        # File Uploader
-        st.markdown("<h4 class='centered-title'>Upload your hotel reviews .csv file here</h4>", unsafe_allow_html=True)
-        uploaded_file = st.file_uploader("", type=["csv"])
-        analyze_btn2 = st.button("Predict Insights")
-        # CSV File
-        if analyze_btn2:
-            if uploaded_file is not None:
-                df = pd.read_csv(uploaded_file)
-                pipeline = PredictPipeline()
-                st.success("File fetched successfully!")
-                pred = pipeline.predict_csv(df)
-                st.write(pred)
-                plot_pie_chart(pred["Sentiment"])
-                plot_wordcloud(df)
-            else:
-                st.warning("Please upload a .CSV file!")
-
-    with col3:
-        st.markdown("""
-        <style>
-            .popup {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background-color: white;
-                padding: 20px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                border-radius: 8px;
-                z-index: 9999;
-            }
-            .popup-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 9998;
-            }
-
-            div.st-emotion-cache-12h5x7g.se1nzilvr5{
-                background-color: #ffffff;
-            }
-                    
-            div.st-emotion-cache-l6wp7i.e1f1d6gn2{
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                max-height: 80vh; /* Limit the height to make it scrollable */
-                overflow-y: auto; /* Enable vertical scrolling */
-                padding: 20px;
-                background-color: white;
-                z-index: 99999; /* Ensure it is above other elements */
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for better visibility */
-                border-radius: 8px; /* Optional: Rounded corners */
-            }
-            div.st-emotion-cache-j5r0tf.e1f1d6gn3{
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                padding: 10px;
-                z-index: 9999;
-                border-radius: 8px;
-            }
-        </style>
-        """, unsafe_allow_html=True)
-
-
-        modal = Modal("Summarize Reviews", key="unique_modal_key")
-
-        # Button to open the modal
-        summarize_btn = st.button('Summarize')
-        if summarize_btn:
-            modal.open()
-
-        # Display the modal content
-        if modal.is_open():
-            with modal.container():
-                # CSS for modal styling with increased width
-                st.markdown("""
-                    <style>
-                        /* Modal Heading Styling */
-                        div.st-emotion-cache-pgf13w.e1nzilvr3 h2 {
-                            font-size: 30px;
-                            margin-top: 0px;
-                            margin-bottom: 0px;
-                        }
-
-                        /* Modal Container Styling */
-                        .modal-container {
-                            max-height: 80vh;
-                            max-width: 90vw; /* Increase width to 80% of viewport */
-                            margin: auto; /* Center the modal */
-                            overflow-y: auto; /* Enable scrolling if content exceeds 80% height */
-                            overflow-x: hidden;
-                        }
-
-                        /* Centered Title within Modal */
-                        .modal-centered-title {
-                            font-size: 20px;
-                            text-align: center;
-                            margin-top: -30px;
-                            margin-bottom: 0px;
-                        }
-
-                            
-                        div.st-emotion-cache-0.e1f1d6gn0{
-                            width: 100vw;
-                            max-width: 80vw;
-                            margin: auto;
-                        }
-                        
-                        hr {
-                            display: none;
-                        }
-                    </style>
-                """, unsafe_allow_html=True)
-
-                # Modal Content: Select features for sentiment evaluation
-                st.markdown("<h5 class='modal-centered-title'>Select some features for sentiment evaluation<br>OR<br>Click on 'Generate Summary' for a overall view</h5>", unsafe_allow_html=True)
-                
-                # Options for sentiment evaluation
-                choices = ["Parking", "Cleanliness", "Transportation", "Internet", "Restaurant"]
-                selected_aspects = st.multiselect("", options=choices, key="unique_multiselect_key")
-
-
-                df = pd.read_csv(uploaded_file)
-                # Button to generate the summary
-                if st.button("Generate Summary", key="unique_summary_button_key"):
-                    summ = Summariser()
-                    summary_result = summ.summarize_reviews(df, selected_aspects)
-
-                    # Display the generated summary within an expander
-                    with st.expander("Summary", expanded=True):
-                        st.markdown(summary_result)
-
+elif page == "Analyze":
+    client.sentiment_analyzer()
 
 ######################################## END - SERVICES PAGE #########################################
 
@@ -460,7 +254,7 @@ elif page == "Predict":
         .full-width {
             width: 100%;
             text-align: center;
-            font-size: 75px;
+            font-size: 70px;
             font-family: 'Poppins', sans-serif;
             font-weight: 1000;
             color: #212529;
@@ -692,17 +486,75 @@ elif page == "Predict":
 
 ######################################## START - ABOUT PAGE ########################################
 elif page == "About Us":
-    st.header("About Us")
+    st.markdown("""
+    <div style="text-align: center; font-size: 2px; margin-top: 0px; margin-bottom: -30px;">
+        <h1>Our Team</h1>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+        <style>
+        .team-image {
+            border: 3px solid #000; 
+            border-radius: 12px; 
+            padding: 5px;
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+        }
+        .team-caption {
+            font-family: 'Poppins', sans-serif; 
+            font-size: 15px; 
+            text-align: center;
+            display: block;
+            margin-top: 5px;
+            color: #333; 
+            line-height: 1.35; 
+        }
+        .first-name {
+            color: #fb8500; /* Orange color for first names */
+            display: block;
+            font-weight: 700;
+            font-size: 27px;
+        }
+        .last-name {
+            display: block;
+            font-weight: 500;
+            font-size: 20px;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+    col1, col2, col3, col4, col5, col6, col7 = st.columns([1, 1, 1, 1, 1, 1, 1])
+
+    with col1:
+        st.markdown('<img src="https://i.imgur.com/OpO0Vgl.png" class="team-image"/>', unsafe_allow_html=True)
+        st.markdown('<p class="team-caption"><span class="first-name">Devarshi</span><span class="last-name">Gupta</span></p>', unsafe_allow_html=True)
+
+    with col2:
+        st.markdown('<img src="https://i.imgur.com/kW9CTIg.png" class="team-image"/>', unsafe_allow_html=True)
+        st.markdown('<p class="team-caption"><span class="first-name">Aditya</span><span class="last-name">Datta</span></p>', unsafe_allow_html=True)
+
+    with col3:
+        st.markdown('<img src="https://i.imgur.com/S07u4rz.png" class="team-image"/>', unsafe_allow_html=True)
+        st.markdown('<p class="team-caption"><span class="first-name">Deepra</span><span class="last-name"> Mazumder</span></p>', unsafe_allow_html=True)
+
+    with col4:
+        st.markdown('<img src="https://i.imgur.com/kGnozWT.png" class="team-image"/>', unsafe_allow_html=True)
+        st.markdown('<p class="team-caption"><span class="first-name">Mainak</span><span class="last-name">Das</span></p>', unsafe_allow_html=True)
+
+    with col5:
+        st.markdown('<img src="https://i.imgur.com/sTSfPFA.png" class="team-image"/>', unsafe_allow_html=True)
+        st.markdown('<p class="team-caption"><span class="first-name">Soumya</span><span class="last-name"> Chowdhury</span></p>', unsafe_allow_html=True)
+
+    with col6:
+        st.markdown('<img src="https://i.imgur.com/72JqE5d.png" class="team-image"/>', unsafe_allow_html=True)
+        st.markdown('<p class="team-caption"><span class="first-name">Kinjal</span><span class="last-name">Kanjilal</span></p>', unsafe_allow_html=True)
+
+    with col7:
+        st.markdown('<img src="https://i.imgur.com/eTc1eVW.png" class="team-image"/>', unsafe_allow_html=True)
+        st.markdown('<p class="team-caption"><span class="first-name">Debdipta</span><span class="last-name">Mitra</span></p>', unsafe_allow_html=True)
+
+
 ######################################## END - ABOUT PAGE #########################################
-
-######################################## START - NEW PAGE ########################################
-elif page == "Analyze":
-    client.sentiment_analyzer()
-            
-
-
-
-
-
-
-######################################## END - NEW PAGE #########################################
