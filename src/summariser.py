@@ -52,8 +52,8 @@ Summarize the overall sentiment of the reviews (e.g., positive, negative, mixed)
 class Summariser:
     def __init__(self):
         load_dotenv()
-        # self.google_api_key = os.getenv('GOOGLE_API_KEY')
-        self.google_api_key = "AIzaSyADXSFeYLZaf3y4Xaj8RsVSF-9NEEqAsjk"
+        self.google_api_key = os.getenv('GOOGLE_API_KEY')
+      #   self.google_api_key = "AIzaSyADXSFeYLZaf3y4Xaj8RsVSF-9NEEqAsjk"
     
     def summarize_reviews(self, data, aspects=None):
         print(len(data))
