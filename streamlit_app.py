@@ -1,23 +1,26 @@
+import pandas as pd
 import streamlit as st
-from streamlit_navigation_bar import st_navbar
 from streamlit_modal import Modal
+from streamlit_navigation_bar import st_navbar
+
+import client
+from src.prediction import PredictPipeline
+from src.summariser import Summariser
+from src.utils import plot_pie_chart, plot_wordcloud
+
 # import streamlit.components.v1 as components
 # from streamlit_extras.switch_page_button import switch_page
 # from streamlit_float import *
 
-import pandas as pd
-from src.prediction import PredictPipeline
-from src.utils import plot_pie_chart, plot_wordcloud
-from src.summariser import Summariser
 
 st.set_page_config(
     page_title="innsights.ai",
     page_icon="chart_with_upwards_trend",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
 
-pages = ["Home", "Analyze", "Predict", "About Us", "GitHub"]
+pages = ["Home", "Analyze", "Predict","CSV", "About Us", "GitHub"]
 urls = {"GitHub": "https://github.com/DeepraMazumder/NPN-Cognizant-Hackathon"}
 logo_path = ("templates\img\innsights-logo.svg")
 
@@ -61,7 +64,7 @@ styles = {
 
 options = {
     "show_menu": True,
-    "show_sidebar": False,
+    "show_sidebar": True,
 }
 
 page = st_navbar(
@@ -237,7 +240,7 @@ if page == "Home":
 
 ######################################### START - SERVICES PAGE #########################################
 
-elif page == "Analyze":
+elif page == "CSV":
     st.markdown("""
         <style>
         .center-container {
@@ -308,7 +311,6 @@ elif page == "Analyze":
         # File Uploader
         st.markdown("<h4 class='centered-title'>Upload your hotel reviews .csv file here</h4>", unsafe_allow_html=True)
         uploaded_file = st.file_uploader("", type=["csv"])
-        
         analyze_btn2 = st.button("Predict Insights")
         # CSV File
         if analyze_btn2:
@@ -692,3 +694,15 @@ elif page == "Predict":
 elif page == "About Us":
     st.header("About Us")
 ######################################## END - ABOUT PAGE #########################################
+
+######################################## START - NEW PAGE ########################################
+elif page == "Analyze":
+    client.sentiment_analyzer()
+            
+
+
+
+
+
+
+######################################## END - NEW PAGE #########################################
