@@ -1,4 +1,4 @@
-# NPN Cognizant Hackathon - Hotel Sentiment Analysis
+# Hotel Reviews Sentiment Analysis
 
 Welcome to our **Hotel Sentiment Analysis** project for the **NPN Cognizant Hackathon**! This repository contains all the necessary components to scrape, analyze, predict and summarise sentiments from hotel reviews.
 
