@@ -8,6 +8,8 @@ class PredictPipeline:
         self.model = load_object('artifacts/NPN_Logistic_Regression_Model.pkl')
         self.encoder = load_object("artifacts/NPN_Label_Encoder.pkl")
 
+
+    # .CSV REVIEWS ANALYSER 
     def predict_csv(self, dataset):
         reviews = dataset['REVIEWS']
 
@@ -28,6 +30,8 @@ class PredictPipeline:
 
         return prediction_df
     
+
+    # SINGLE REVIEW ANALYSER
     def predict_str(self, review):
         # Transform the single review string using the loaded TF-IDF vectorizer
         processed_data = self.vectorizer.transform([review])

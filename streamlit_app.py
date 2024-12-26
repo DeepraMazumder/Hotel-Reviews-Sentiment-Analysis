@@ -8,21 +8,17 @@ from src.prediction import PredictPipeline
 from src.summariser import Summariser
 from src.utils import plot_pie_chart, plot_wordcloud
 
-# import streamlit.components.v1 as components
-# from streamlit_extras.switch_page_button import switch_page
-# from streamlit_float import *
-
-
 st.set_page_config(
-    page_title="innsights.ai",
-    page_icon="chart_with_upwards_trend",
+    page_title="Hotelytics.ai",
+    page_icon="bar_chart",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-pages = ["Home", "Analyze", "Predict", "About Us", "GitHub Repo"]
-urls = {"GitHub Repo": "https://github.com/DeepraMazumder/NPN-Cognizant-Hackathon"}
-logo_path = r"templates/img/innsights-logo.svg"
+pages = ["Home", "Analyze", "Predict", "Certificate", "GitHub Repo"]
+urls = {"GitHub Repo": "https://github.com/Mainak-Das"}
+logo_path = r"templates/img/Hotelytics-Logo.svg"
+
 
 # Navbar CSS
 styles = {
@@ -30,7 +26,7 @@ styles = {
     "nav": {
         "background-color": "rgba(233, 236, 239)",
         "justify-content": "left",
-        "height": "60px",
+        "height": "70px",
     },
     "img": {
         "padding-right": "10px",
@@ -95,7 +91,7 @@ if page == "Home":
         """
         <style>
         .stApp {
-            background-image: url("https://i.imgur.com/qpN2PJt.jpg");
+            background-image: url("https://i.imgur.com/Bk2FvR5.jpg");
 
             background-size: cover;
             background-repeat: no-repeat;
@@ -133,7 +129,7 @@ if page == "Home":
         background-position: 28% 65%;
         background-repeat: no-repeat;
         background-size: 96% 40%;
-        opacity: 90%;
+        opacity: 100%;
     }
 
     .bsb-tpl-font-hw {
@@ -155,17 +151,16 @@ if page == "Home":
     }
                 
     .custom-position {
-        margin-top: -20px;
+        margin-top: 80px;
     }
     </style>
     ''', unsafe_allow_html=True)
-
 
     st.markdown('''
     <h1 class="display-3 fw-bolder mb-2 custom-position" style="color: #faa307; line-height: 1.1;">
         Turning <mark class="bsb-tpl-highlight">
         <span class="bsb-tpl-font-hw display-2 text-accent fw-normal">guest reviews</span></mark><br>
-        <span style="line-height: 0;">into better business</span>
+        <span style="line-height: 0;">into business growth</span>
     </h1>
 
     ''', unsafe_allow_html=True)
@@ -175,15 +170,17 @@ if page == "Home":
     st.markdown('''
         <style>
         .sub-text {
-            font-size: 1.35rem !important;
+            font-size: 1.15rem !important;
             margin-bottom: 1.5rem !important; 
-            margin-top: -30px;
+            margin-top: -10px;
+            text-align: justify; 
+            line-height: 1.3;
             color: white; 
         }
         </style>
     ''', unsafe_allow_html=True)
 
-    st.markdown('<p class="sub-text">Intuitive insights, effortless impact, unforgettable stays.</p>', unsafe_allow_html=True)
+    st.markdown('<p class="sub-text">Unlock guest feedback with intuitive insights for effortless improvements.<br>Transform reviews into actionable data, creating memorable stays.</p>', unsafe_allow_html=True)
     # End of Sub-Heading
 
 
@@ -275,7 +272,7 @@ elif page == "Predict":
         """, unsafe_allow_html=True)
 
         st.markdown(
-            '<div class="full-width">A faster way to analyze<br><span class="line2">your hotel review</span></div>',
+            '<div class="full-width">A smarter way to<br><span class="line2">interpret your hotel reviews</span></div>',
             unsafe_allow_html=True
         )
 
@@ -286,7 +283,7 @@ elif page == "Predict":
             text-align: center;
             font-size: 20px;
             font-family: 'Poppins', sans-serif;
-            font-weight: 200;
+            font-weight: 300;
             color: #555555;
             margin-top: -15px;
         }
@@ -346,12 +343,11 @@ elif page == "Predict":
         # Apply the CSS
         st.markdown(highlight_css, unsafe_allow_html=True)
 
-        # Sub-heading with the highlighted "innsights.ai"
         st.markdown(
             '''
-            <div class="sub-heading">Analyze Sentiments in Hotel Reviews for Better Service with 
+            <div class="sub-heading">Unlock Guest Insights for Better Service with 
                 <span class="highlight-container">
-                    <span class="highlight"> innsights.ai</span>
+                    <span class="highlight"> Hotelytics.ai</span>
                 </span>
             </div>
             ''',
@@ -558,3 +554,123 @@ elif page == "About Us":
 
 
 ######################################## END - ABOUT PAGE #########################################
+
+
+import requests
+import base64
+
+if page == "Certificate":
+    st.markdown(
+        """
+        <style>
+        .stApp {
+            background-color: white;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("""
+    <style>
+    .full-width {
+        width: 100%;
+        text-align: left;
+        font-size: 40px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        color: #212529;
+        margin-top: 0px;
+        line-height: 1.1;
+        background: rgb(116,3,1);
+        background: -moz-linear-gradient(90deg, rgba(116,3,1,1) 0%, rgba(191,6,3,1) 25%, rgba(244,140,6,1) 50%, rgba(232,93,4,1) 85%);
+        background: -webkit-linear-gradient(90deg, rgba(116,3,1,1) 0%, rgba(191,6,3,1) 25%, rgba(244,140,6,1) 50%, rgba(232,93,4,1) 85%);
+        background: linear-gradient(90deg, rgba(116,3,1,1) 0%, rgba(191,6,3,1) 25%, rgba(244,140,6,1) 50%, rgba(232,93,4,1) 85%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#740301",endColorstr="#e85d04",GradientType=1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(
+        '<div class="full-width">Internship Completion Certificate</div>',
+        unsafe_allow_html=True
+    )
+
+    # Image Box with Blur Border
+    st.markdown('''
+    <style>
+    .image-box {
+        position: relative;
+        width: 100%;
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.1);
+        filter: blur(10px);
+        z-index: -1;
+    }
+
+    .certificate-image {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 10px;
+        border: 5px solid rgba(255, 255, 255, 0.7);
+    }
+    </style>
+    ''', unsafe_allow_html=True)
+
+    # Image without zoom button overlay
+    st.markdown('''
+    <div class="image-box">
+        <img src="https://i.imgur.com/VlNaX9z.jpg" class="certificate-image"/>
+    </div>
+    ''', unsafe_allow_html=True)
+
+    # Fetch the image from the Imgur URL
+    img_url = "https://i.imgur.com/VlNaX9z.jpg"
+    img_data = requests.get(img_url).content
+
+    # Encode the image to base64
+    encoded_img_data = base64.b64encode(img_data).decode('utf-8')
+
+    # Create the download link with the base64 encoded image
+    st.markdown(
+        f'''
+        <a href="data:image/jpeg;base64,{encoded_img_data}" download="Mainak's Internship Certificate.jpg">
+            <button style="
+                background-color: #fb8500; 
+                border: none; 
+                color: white; 
+                padding: 12px 24px; 
+                font-size: 18px; 
+                border-radius: 8px; 
+                cursor: pointer; 
+                font-weight: 600;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: background-color 0.3s ease;
+                margin-top: 20px; /* Added top margin */
+            " 
+            onmouseover="this.style.backgroundColor='#f76d05'" 
+            onmouseout="this.style.backgroundColor='#fb8500'">
+                Download Certificate
+            </button>
+        </a>
+        ''',
+        unsafe_allow_html=True
+    )

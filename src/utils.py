@@ -66,17 +66,17 @@ def plot_pie_chart1(predictions):
         names=distribution.index,
         values=distribution.values,
         title="Sentiment Pie Chart",
-        color_discrete_sequence=['#4CAF50', '#F44336']  # Green for positive, red for negative
+        color_discrete_sequence=['#4CAF50', '#F44336']  
     )
     
     # Adjust the layout 
     fig.update_layout(
         title_font_size=35, 
-        title_x=0.0,            # Title left-aligned
-        title_y=0.95,          # Title position vertically
-        margin=dict(l=100, r=100, t=100, b=100),  # Adjust margins as needed
+        title_x=0.0,            
+        title_y=0.95,        
+        margin=dict(l=100, r=100, t=100, b=100),  
         height=500,           
-        width=800,             # Adjust width to center the pie chart
+        width=800,            
         showlegend=True
     )
 
